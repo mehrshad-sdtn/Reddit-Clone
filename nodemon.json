@@ -1,0 +1,6 @@
+{
+    "env":{
+        "MONGO_ATLAS_PW": "node-reddit",
+        "JWT_KEY": "secret"
+    }
+}
