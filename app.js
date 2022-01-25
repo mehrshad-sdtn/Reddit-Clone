@@ -2,7 +2,8 @@ const express = require('express')
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
 const app = express();
-const url = require("url")
+const url = require("url");
+const community = require('./api/models/community');
 
 
 mongoose.connect('mongodb+srv://node-reddit:'
@@ -21,7 +22,9 @@ app.use(bodyParser.json());
 
 
 UserRoutes = require("./api/routes/user")
-
+CommunityRoutes = require("./api/routes/community")
+PostRoutes = require("./api/routes/post")
+CommentRoutes = require("./api/routes/comment")
 
 
 app.use((req, res, next) => {
@@ -39,6 +42,9 @@ app.use((req, res, next) => {
 
 
 app.use('/user',UserRoutes)
+app.use('/communities',CommunityRoutes)
+app.use('/post',PostRoutes)
+app.use('/comments',CommentRoutes)
 
 
 app.use((req, res, next) => {
