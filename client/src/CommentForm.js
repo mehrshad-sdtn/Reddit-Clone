@@ -18,6 +18,19 @@ function CommentForm (props) {
         }
       });
   }
+
+  function deleteComment(e) {
+    e.preventDefault();
+    const data = {body:commentBody, parentId:props.parentId,rootId:props.rootId,};
+    axios.delete('http://localhost:4000/comments', data, {withCredentials:true})
+      .then(response => {
+        setCommentBody('');
+        if (props.onSubmit) {
+          props.onSubmit();
+        }
+      });
+  }
+
   return (
     <div className={'text-reddit_text'}>
       {userInfo.username && props.showAuthor && (

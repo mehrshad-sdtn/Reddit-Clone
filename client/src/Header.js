@@ -77,7 +77,11 @@ function Header() {
             {user.username && (
               <span className="block w-50 py-2 px-3 text-sm">
                 Hello, {user.username}!
+              <span className="block w-50 py-2 text-sm">
+               Edit Account
               </span>
+              </span>
+              
             )}
             {!user.username && (
               <button

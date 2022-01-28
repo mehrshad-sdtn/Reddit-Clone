@@ -192,4 +192,25 @@ app.post('/comments', (req, res) => {
   })
 });
 
+
+app.delete('/comments', (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    res.sendStatus(401);
+    return;
+  }
+  const data = {parentId:req.body.parentId, rootId:req.body.rootId,}
+  Comment.findOneAndDelete( {parentId:req.body.parentId, rootId:req.body.rootId})
+  .then(comment => {
+    res.json(comment);
+  })
+  .catch(err =>{
+    console.log(err)
+    res.status(500).json({
+        message: err.message
+    })
+})
+});
+
+
 app.listen(4000);

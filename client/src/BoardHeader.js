@@ -9,8 +9,8 @@ function BoardHeader() {
             <img src="https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_5ey8lzmwmxp21.png?width=256&s=5a85d5c682f40e3cf317c560b219585ac0afce78" alt=""/>
           </div>
           <div className="pt-2 pl-4">
-            <h1 className="text-gray-300 text-3xl">webdev: reddit for web developers</h1>
-            <h5 className="text-gray-500">r/webdev</h5>
+            <h1 className="text-gray-300 text-3xl"> IE community: Reddit Project</h1>
+            <h5 className="text-gray-500">description: by tara & mehrshad</h5>
           </div>
         </div>
       </div>

@@ -5,6 +5,9 @@ import axios from 'axios';
 import AuthModalContext from "./AuthModalContext";
 import ClickOutHandler from 'react-clickout-handler';
 import UserContext from "./UserContext";
+import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 function AuthModal() {
   const [modalType,setModalType] = useState('login');
@@ -12,6 +15,11 @@ function AuthModal() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [err, setErr] = useState('');
+  const [passwordShown, setPasswordShown] = useState(false);
+
+
+  const eye = <FontAwesomeIcon icon={faEye} />;
+
 
   const modalContext = useContext(AuthModalContext);
   const user = useContext(UserContext);
@@ -21,7 +29,10 @@ function AuthModal() {
     setModalType(modalContext.show);
   }
 
-  
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
 
   function register(e) {
     e.preventDefault();
@@ -78,12 +89,23 @@ function AuthModal() {
           )}
           <label>
             <span className="text-reddit_text-darker text-sm">Username:</span>
-            <Input type="text" className="mb-3 w-full" value={username} onChange={e => setUsername(e.target.value)} />
+            <Input 
+            type="text" 
+            className="mb-3 w-full" 
+            value={username} 
+            onChange={e => setUsername(e.target.value)} />
           </label>
 
           <label>
+            <div>
             <span className="text-reddit_text-darker text-sm">Password:</span>
-            <Input type="password" className="mb-3 w-full" value={password} onChange={e => setPassword(e.target.value)} />
+            <Input 
+            type={passwordShown ? "text" : "password"}
+             className="mb-3 w-full" 
+             value={password} 
+             onChange={e => setPassword(e.target.value)} />
+            <i onClick={togglePasswordVisiblity} >{eye} show</i>
+            </div>
           </label>
           {modalType === 'login' && (
             <Button className="w-full py-2 mb-3" style={{borderRadius:'.3rem'}} onClick={()=>login()}>
